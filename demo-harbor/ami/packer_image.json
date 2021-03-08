@@ -1,0 +1,55 @@
+{
+        "variables": {
+                "source_image": "{{env `SOURCE_IMAGE`}}",
+                "machine_type": "{{env `MACHINE_TYPE`}}",
+                "aws_access_key": "{{user `aws_access_key`}}",
+                "aws_secret_key":"{{user `aws_secret_key`}}",
+                "aws_region": "{{ env `AWS_REGION` }}"
+        },
+        "sensitive-variables": ["aws_access_key", "aws_secret_key"],
+        "builders": [{
+                "type": "amazon-ebs",
+                "name": "harbor",
+                "access_key": "{{user `aws_access_key`}}",
+                "secret_key": "{{user `aws_secret_key`}}",
+                "region": "{{user `aws_region`}}",
+                "instance_type": "{{user `machine_type`}}",
+                "ami_name": "packer-harbor-ami",
+                "ami_description": "Base image harbor",
+                "launch_block_device_mappings": [{
+                        "device_name": "/dev/sda1",
+                        "Encrypted": true,
+                        "delete_on_termination": true
+                }],
+                "source_ami_filter": {
+                        "filters": {
+                                "virtualization-type": "hvm",
+                                "name": "{{user `source_image`}}",
+                                "product-code": "aw0evgkw8e5c1q413zgy5pjce",
+                                "root-device-type": "ebs"
+                        },
+                        "owners": ["self", "amazon", "aws-marketplace"],
+                        "most_recent": true
+                },
+                "ssh_username": "centos"
+        }],
+        "provisioners": [{
+                        "type": "shell",
+                        "inline": [
+                                "sudo yum install epel-release wget yum-utils -y",
+                                "sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo",
+                                "sudo yum install docker-ce docker-ce-cli containerd.io -y && sudo systemctl start docker"
+                        ],
+                        "only": ["harbor"]
+                },
+                {
+                        "type": "file",
+                        "source": "scripts",
+                        "destination": "/home/centos",
+                        "only": ["harbor"]
+                }
+
+
+
+        ]
+}

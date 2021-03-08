@@ -1,0 +1,5 @@
+{
+    "aws_region": "ap-south-1",
+    "source_image": "CentOS Linux 7 x86_64 HVM EBS *",
+    "machine_type": "t2.xlarge"
+}

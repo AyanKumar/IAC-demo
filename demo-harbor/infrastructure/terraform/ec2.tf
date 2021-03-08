@@ -38,4 +38,11 @@ resource "aws_instance" "harbor" {
     volume_type           = "gp2"
     encrypted             = true
   }
+  
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /home/centos/harbor_builder.sh",
+      "/home/centos/harbor_builder.sh",
+    ]
+  }
 }
