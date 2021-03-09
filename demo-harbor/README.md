@@ -8,10 +8,10 @@
   I have concentrated more on TDD with infrastructure and deploying a simple app.
   You can find the architectural diagram under Diagram folder.
 # Tools used:
-  Packer : For builing image for harbor. http://packer.io/
-  Terraform: For deploying resources in AWS. https://www.terraform.io/
-  Conftest: For unit testing .tf files in order to enforce policies and checks. (https://www.conftest.dev/)
-  Terratest: For end to end testing which will verify post the resources are deployed whether the dns url is accessible and resturn the correct statusCode.(https://terratest.gruntwork.io/)
+  1. Packer : For builing image for harbor. http://packer.io/
+  2. Terraform: For deploying resources in AWS. https://www.terraform.io/
+  3. Conftest: For unit testing .tf files in order to enforce policies and checks. (https://www.conftest.dev/)
+  4. Terratest: For end to end testing which will verify post the resources are deployed whether the dns url is accessible and resturn the correct statusCode.(https://terratest.gruntwork.io/)
   
  
  # Pre-requisite:
