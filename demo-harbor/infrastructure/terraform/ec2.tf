@@ -38,11 +38,29 @@ resource "aws_instance" "harbor" {
     volume_type           = "gp2"
     encrypted             = true
   }
-
+  provisioner "file" {
+    source      = "harbor_builder.sh"
+    destination = "/home/centos/harbor_builder.sh"
+  }
+  provisioner "file" {
+    source      = "harbor.yml"
+    destination = "/home/centos/harbor.yml"
+  }
   provisioner "remote-exec" {
     inline = [
+      "sudo ls /home/centos/",
       "chmod +x /home/centos/harbor_builder.sh",
-      "/home/centos/harbor_builder.sh",
+      "/home/centos/harbor_builder.sh ${aws_instance.harbor.public_ip}"
+
+
     ]
+  }
+
+  connection {
+    type        = "ssh"
+    user        = "centos"
+    password    = ""
+    private_key = file("~/.ssh/id_rsa")
+    host        = aws_instance.harbor.public_ip
   }
 }

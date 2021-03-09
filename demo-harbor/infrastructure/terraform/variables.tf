@@ -21,3 +21,11 @@ variable "domainname" {
 variable "hostedzone_id" {
   type = string
 }
+
+variable "tagname" {
+  type = string
+}
+
+variable "dns_prefix" {
+  type = string
+}

@@ -14,6 +14,11 @@ provider "local" {
 
 locals {
 
-  external_dns = "altran.${var.domainname}"
-  name = "harbor"
+  external_dns = "${var.dns_prefix}.${var.domainname}"
+  name         = var.tagname
+}
+
+output "DNS" {
+  value = aws_route53_record.harbor-external.name
+
 }

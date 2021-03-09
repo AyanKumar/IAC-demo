@@ -17,6 +17,9 @@ contract:
 	terraform show -json $(TFPLAN) > $(TFPLAN).json
 	conftest test -p test/contract/logic.rego $(TFPLAN).json
 	
+integration:
+	cd tes/intergration; go test -v -timeout 30m
+	
 apply:
 	terraform apply
 	
