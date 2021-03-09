@@ -20,7 +20,7 @@
 
 
 
-Steps to deploy it in AWS :
+# Steps to deploy it in AWS :
 
 # 1. Create base image using packer.
    https://www.packer.io/
