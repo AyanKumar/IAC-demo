@@ -39,6 +39,6 @@ resource "aws_security_group" "web" {
   }
 
   tags = {
-    Name = "harbor_sg"
+    Name = local.name
   }
 }

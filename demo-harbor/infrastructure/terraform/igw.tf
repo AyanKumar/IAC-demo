@@ -1,7 +1,7 @@
 resource "aws_internet_gateway" "app_vpc" {
   vpc_id = aws_vpc.app_vpc.id
   tags = {
-    Name = "harbor-gateway"
+    Name = local.name
 
   }
 }
@@ -13,7 +13,7 @@ resource "aws_route_table" "public" {
     gateway_id = aws_internet_gateway.app_vpc.id
   }
   tags = {
-    Name = "harbor-public-route"
+    Name = local.name
 
   }
 }

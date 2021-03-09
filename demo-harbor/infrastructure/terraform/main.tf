@@ -9,10 +9,11 @@ provider "aws" {
 }
 
 provider "local" {
-  version = "~> 1.4"
+
 }
 
 locals {
 
   external_dns = "altran.${var.domainname}"
+  name = "harbor"
 }

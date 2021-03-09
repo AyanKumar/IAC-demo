@@ -9,7 +9,7 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "harbor-public-subnet"
+    Name = local.name
 
   }
 }

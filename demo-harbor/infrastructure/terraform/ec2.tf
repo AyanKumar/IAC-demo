@@ -2,7 +2,7 @@ data "aws_ami" "image_harbor" {
   most_recent = true
   filter {
     name   = "image-id"
-    values = ["${var.image_harbor}"]
+    values = [var.image_harbor]
   }
 
   owners = ["self"]
@@ -19,7 +19,7 @@ resource "aws_instance" "harbor" {
   ami           = data.aws_ami.image_harbor.id
 
   tags = {
-    Name = "harbor-server"
+    Name = local.name
   }
 
   key_name                    = aws_key_pair.keypair.id
@@ -28,7 +28,7 @@ resource "aws_instance" "harbor" {
   associate_public_ip_address = true
 
 
-  vpc_security_group_ids = ["${aws_security_group.web.id}"]
+  vpc_security_group_ids = [aws_security_group.web.id]
 
 
 
@@ -38,7 +38,7 @@ resource "aws_instance" "harbor" {
     volume_type           = "gp2"
     encrypted             = true
   }
-  
+
   provisioner "remote-exec" {
     inline = [
       "chmod +x /home/centos/harbor_builder.sh",
