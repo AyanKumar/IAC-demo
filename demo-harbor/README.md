@@ -31,6 +31,11 @@ Steps to deploy it in AWS :
 
    # Integration testing or end to end testing:
     I have used Terratest(https://terratest.gruntwork.io/) to do terraform init, terraform apply and terraform destroy. It also checks if the external url is accessible and it return the correct status code. To run integration testing run: make integration.
+    
+    
+    # After the infrasturucture is deployed, you can access the horbor server using the dns. This is the landing page you will see:
+    ![image](https://user-images.githubusercontent.com/13837679/110481059-2af21c00-810d-11eb-8b59-ad9ce4d2b5b0.png)
+
    
 
    
