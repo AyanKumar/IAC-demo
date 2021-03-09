@@ -1,4 +1,4 @@
-Infrastructure demo
+# Infrastructure demo
 
 This repo installs Harbor registry repo.
 
@@ -7,7 +7,7 @@ secures artifacts with policies and role-based access control, ensures images ar
 
 Steps to deploy it in AWS :
 
-1. Create base image using packer.
+# 1. Create base image using packer.
    https://www.packer.io/
    Install packer and then run the following command from the demo-harbor/ami folder. Make sure to set AWS credentials in environment variable:
 
@@ -16,22 +16,21 @@ Steps to deploy it in AWS :
    This command will create a base image. You will find a new image in the AMI of your region.
 
 
-2. Terraform TDD.
+# 2. Terraform TDD.
    
-   Unit Testing:
+   # Unit Testing:
    I have used Conftest (https://www.conftest.dev/) for unit testing and enforcing policies.
    It uses rego language
    I have created a Makefile 
    To run unit tests run make unit.
    
    
-   Contract testing:
+   # Contract testing:
    I have used this to test the the variables are properly set and to test some overall logic.
    To run contract testing run make contract.
 
-   Integration testing or end to end testing:
-   This testing I have terraform apply to provision the resource and then have used Terratest for testing that resource has been properly created.
-   To run integration testing, run make integration
+   # Integration testing or end to end testing:
+    I have used Terratest(https://terratest.gruntwork.io/) to do terraform init, terraform apply and terraform destroy. It also checks if the external url is accessible and it return the correct status code. To run integration testing run: make integration.
    
 
    
