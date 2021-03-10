@@ -3,20 +3,20 @@
  https://goharbor.io/
  
  Harbor is an open source registry that 
- secures artifacts with policies and role-based access control, ensures images are scanned and free from vulnerabilities, and signs images as   trusted
+ secures artifacts with policies and role-based access control, ensures images are scanned and free from vulnerabilities, and signs images as   trusted.
  
   I have concentrated more on TDD with infrastructure and deploying a simple app.
   You can find the architectural diagram under Diagram folder.
 # Tools used:
-  1. Packer : For builing image for harbor. http://packer.io/
+  1. Packer : For building image for harbor. http://packer.io/
   2. Terraform: For deploying resources in AWS. https://www.terraform.io/
   3. Conftest: For unit testing .tf files in order to enforce policies and checks. (https://www.conftest.dev/)
   4. Terratest: For end to end testing which will verify post the resources are deployed whether the dns url is accessible and resturn the correct statusCode.(https://terratest.gruntwork.io/)
   
  
  # Pre-requisite:
-   You must have a valid AWS account.
-   Your must create a hosted zone in AWS Route53 before proceeding with the deployment automation.
+   1. You must have a valid AWS account.
+   2. Your must create a hosted zone in AWS Route53 before proceeding with the deployment automation.
 
 
 
